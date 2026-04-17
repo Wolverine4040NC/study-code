@@ -251,7 +251,7 @@ A cinema manages movies, customers, and tickets.
    - Mark appropriate methods with `{query}`
    - Use the direction for parameters
 
-## 🟡 Section V: Search Engine
+## 🔴 Section V: Search Engine
 
 In this section, you will create a simplified **Search Engine System** including UML diagrams and C++ code.
 
@@ -277,7 +277,7 @@ Each component of the system should provide meaningful functionality, such as:
 
 - displaying its internal state in a readable format  
 - checking conditions without modifying internal data  
-- processing input parameters where appropriate  
+- processing input parameters where appropriate
 
 ---
 
@@ -301,10 +301,20 @@ Each component of the system should provide meaningful functionality, such as:
 
 🚫 Do **not** model relationships between classes in this task.
 
+- Create an **UML object diagram** that shows one concrete snapshot of your system at runtime
+- Use meaningful object names and concrete attribute values
+
 ### Tasks: Part II
 
 - Based on your UML diagram, implement the Search Engine system in C++
 - The code should reflect exactly your UML architecture
 - The code should consider OOP best-practices such as abstraction and encapsulation
-- Write a main-function and creates real objects of each class and tests each method
-- Create an **UML object diagram** that shows one concrete snapshot of your system at runtime
+
+Additionally, implement the following functionality:
+- Implement a method that performs the actual search feature; e.g.
+   - storing several web resources inside the search engine
+   - checking whether the query text is contained in the text content of a resource
+   - sorting all matching resources by ranking in descending order
+   - returning or printing only the first `maxResults` matches
+
+- Demonstrate the functionality in `main()` with multiple resources and at least two different queries
