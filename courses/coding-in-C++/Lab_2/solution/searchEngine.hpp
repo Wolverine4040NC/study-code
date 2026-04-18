@@ -10,7 +10,6 @@
 #define SEARCH_ENGINE_HPP
 
 #include <string>
-#include <vector>
 
 #include "searchQuery.hpp"
 #include "webResource.hpp"
@@ -18,11 +17,16 @@
 class SearchEngine
 {
 private:
+    static constexpr int MAX_WEB_RESOURCES = 100;
     static int total_queries;
 
-    std::vector<WebResource> web_resources;
+    WebResource web_resources[MAX_WEB_RESOURCES];
+    int web_resource_count;
+
     SearchQuery current_query;
-    std::vector<WebResource> current_search_results;
+
+    WebResource current_search_results[MAX_WEB_RESOURCES];
+    int current_search_result_count;
 
     /**
      * @brief Checks whether a resource matches a query.
@@ -72,6 +76,8 @@ public:
     /**
      * @brief Adds a new web resource to the search engine.
      *
+     * The resource is only added if there is still free space.
+     *
      * @param[in] resource  Resource to be added
      */
     void addResource(const WebResource &resource);
@@ -100,11 +106,19 @@ public:
     void setCurrentQuery(const SearchQuery &query);
 
     /**
-     * @brief Returns the current search results.
+     * @brief Returns one current search result by index.
      *
-     * @return Vector containing the current search results
+     * @param[in] index  Position of the search result
+     * @return Search result at the given index or a default object if invalid
      */
-    std::vector<WebResource> getSearchResults() const;
+    WebResource getSearchResult(int index) const;
+
+    /**
+     * @brief Returns the number of current search results.
+     *
+     * @return Number of current search results
+     */
+    int getSearchResultCount() const;
 
     /**
      * @brief Sorts the current search results by ranking in descending order.
